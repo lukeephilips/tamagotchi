@@ -29,29 +29,26 @@ get('/tamagotchis/:id') do
   erb(:tamagotchi)
 end
 
-# post('/interaction') do
-#   interaction = params.fetch('interactions')
-#    @all_tamagotchis = Tamagotchi.all()
-#    @all_tamagotchis[0].tamagotchi_changes(@all_tamagotchis[0].time_passes())
-#    if @all_tamagotchis[0].is_alive
-#     if interaction == 'feed'
-#       @all_tamagotchis[0].feed()
-#     elsif interaction == 'pet'
-#       @all_tamagotchis[0].pet()
-#     elsif interaction == 'nap'
-#       @all_tamagotchis[0].nap()
-#     elsif interaction == 'clean'
-#       @all_tamagotchis[0].clean()
-#     end
-#     erb(:interaction)
-#   else
-#     erb(:graveyard)
-#   end
-#   # else
-#   #   erb(:graveyard)
-# end
+post('/tamagotchis/:id') do
+  @tamagotchi = Tamagotchi.find(params.fetch('id'))
+  interaction = params.fetch('interactions')
+   @tamagotchi.tamagotchi_changes(@tamagotchi.time_passes())
+   if @tamagotchi.is_alive
+    if interaction == 'feed'
+      @tamagotchi.feed()
+    elsif interaction == 'pet'
+      @tamagotchi.pet()
+    elsif interaction == 'nap'
+      @tamagotchi.nap()
+    elsif interaction == 'clean'
+      @tamagotchi.clean()
+    end
+    erb(:interaction)
+  else
+    erb(:graveyard)
+  end
+end
 
-# get('/output/:id') do
-#   @new_pet = Tamagotchi.find(params.fetch("id"))
-#   erb(:output)
-# end
+get('/interaction') do
+  erb(:tamagotchi)
+end

@@ -30,6 +30,7 @@ class Tamagotchi
   define_singleton_method(:dead) do
     @@dead_tamagotchis
   end
+
   define_method(:name) do
     @name
   end

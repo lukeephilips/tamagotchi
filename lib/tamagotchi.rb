@@ -62,31 +62,31 @@ class Tamagotchi
     difference = right_now - @start_time
   end
   define_method(:tamagotchi_changes) do |time|
-    @food -= (time/1.2).to_i
-    @rest -= (time/1.5).to_i
+    @food -= (time/3).to_i
+    @rest -= (time/3).to_i
     @love -= (time/2).to_i
-    @poop += (time).to_i
+    @poop += (time/2).to_i
     @start_time = Time.new()
   end
 
   define_method(:feed) do
     if @food < 125
-      @food += 2
+      @food += 10
     end
   end
   define_method(:nap) do
-    if @rest < 1125
-      @rest += 3
+    if @rest < 125
+      @rest += 10
     end
   end
   define_method(:pet) do
     if @love < 125
-      @love += 4
+      @love += 25
     end
   end
   define_method(:clean) do
     if @poop > 0
-      @poop -=5
+      @poop = 0
     end
   end
   define_method(:kill) do

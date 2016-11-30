@@ -6,9 +6,9 @@ class Tamagotchi
   define_method(:initialize) do |name, species|
     @name = name
     @species = species
-    @food = 20
-    @rest = 20
-    @love = 20
+    @food = 100
+    @rest = 100
+    @love = 100
     @poop = 0
     @start_time = Time.new()
     @id = @@all_tamagotchis.length().+(1)
@@ -51,7 +51,7 @@ class Tamagotchi
   end
 
   define_method(:is_alive) do
-    @food > 0 and @rest > 0 and @love > 0 and @poop < 20
+    @food > 0 and @rest > 0 and @love > 0 and @poop < 100
   end
   define_method(:set_food) do |level|
     @food = level
@@ -70,18 +70,18 @@ class Tamagotchi
   end
 
   define_method(:feed) do
-    if @food < 25
-      @food += 1
+    if @food < 125
+      @food += 2
     end
   end
   define_method(:nap) do
-    if @rest < 125
-      @rest += 1
+    if @rest < 1125
+      @rest += 3
     end
   end
   define_method(:pet) do
-    if @love < 25
-      @love += 1
+    if @love < 125
+      @love += 4
     end
   end
   define_method(:clean) do
@@ -90,7 +90,7 @@ class Tamagotchi
     end
   end
   define_method(:kill) do
-    @love -= 25
+    @love -= 125
   end
 
   define_method(:save) do

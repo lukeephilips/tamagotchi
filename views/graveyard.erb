@@ -1,3 +1,10 @@
 <h1> he ded </h1>
 
+<h3>He lies with his brethren: </h3>
+<ul>
+  <% @dead_tamagotchis.each() do |tamagotchi| %>
+    <li><%= tamagotchi.name() %> the <%= tamagotchi.species() %></li>
+  <% end %>
+</ul>
+
 <a href="/">Back</a>

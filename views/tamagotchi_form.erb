@@ -1,0 +1,18 @@
+<h1>Add a tamagotchi</h1>
+
+<form action="/tamagotchis" method="post">
+  <div class="form-group">
+    <label for="pet_name">Tamagotchi Name</label>
+    <input id="pet_name" name="pet_name" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="species">Tamagotchi Species</label>
+    <select class="form-control" name="species">
+      <option>Martian</option>
+      <option>Plutonian</option>
+      <option>Moonian</option>
+      <option>Jupitorian</option>
+    </select>
+  </div>
+  <button type="submit" class="btn">Create</button>
+</form>

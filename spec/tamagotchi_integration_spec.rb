@@ -8,7 +8,7 @@ describe('the home path', {:type => :feature}) do
     Tamagotchi.clear
   end
   it('allows the user to create a new tamagotchi') do
-    visit('/')
+    visit('/tamagotchi_form')
     fill_in('pet_name', :with => 'Marvin')
     select('Martian', :from => 'species')
     click_button('Create')
@@ -21,7 +21,7 @@ describe('the interacting with pet path', {:type => :feature}) do
     Tamagotchi.clear
   end
   it('allows the user to interact with their pet and displays changes') do
-    visit('/')
+    visit('/tamagotchi_form')
     fill_in('pet_name', :with => 'Marvin')
     select('Martian', :from => 'species')
     click_button('Create')

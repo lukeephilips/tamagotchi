@@ -1,0 +1,20 @@
+  <h1><%= @tamagotchi.name() %></h1>
+    <h3>Species: <%= @tamagotchi.species() %></h3>
+    <h4>Food: <%= @tamagotchi.food %></h4>
+    <h4>Love: <%= @tamagotchi.love %></h4>
+    <h4>Rest: <%= @tamagotchi.rest %></h4>
+    <h4>Poops: <%= @tamagotchi.poop %></h4>
+    <form method="post">
+      <div class="form-group">
+        <label for="interactions">Interact with your pet</label>
+        <select class="form-control" name="interactions">
+          <option value="feed">Feed</option>
+          <option value="pet">Pet</option>
+          <option value="nap">Nap</option>
+          <option value="clean">Clean</option>
+          <option value="kill">Kill</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Go</button>
+    </form>
+  <a href="/">Home</a>

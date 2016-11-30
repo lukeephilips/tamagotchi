@@ -1,0 +1,8 @@
+<h1>Tomagotchis</h1>
+
+<h3>Here are the tamagotchis in your Garden: </h3>
+<ul>
+  <% @live_tamagotchis.each() do |tamagotchi| %>
+    <li><a href="/tamagotchis/<%= tamagotchi.id() %>"><%= tamagotchi.name() %> the <%= tamagotchi.species() %></a></li>
+  <% end %>
+</ul>

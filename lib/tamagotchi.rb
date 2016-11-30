@@ -1,5 +1,7 @@
 class Tamagotchi
   @@all_tamagotchis = []
+  @@live_tamagotchis = []
+  @@dead_tamagotchis = []
 
   define_method(:initialize) do |name, species|
     @name = name
@@ -20,7 +22,12 @@ class Tamagotchi
   define_singleton_method(:all) do
     @@all_tamagotchis
   end
-
+  define_singleton_method(:live) do
+    @@live_tamagotchis
+  end
+  define_singleton_method(:dead) do
+    @@dead_tamagotchis
+  end
   define_method(:name) do
     @name
   end
@@ -51,12 +58,16 @@ class Tamagotchi
     difference = right_now.min - @start_time.min
   end
   define_method(:tamagotchi_changes) do |time|
-    if is_alive
+    # if is_alive
       @food -= time
       @rest -= time
       @love -= time * 0.5
       @poop += time * 2
-    end
+    # end
+  end
+  define_method(:dies) do
+    @@dead_tamagotchis.push(self)
+    # @@live_tamagotchis - self
   end
   define_method(:feed) do
     @food += 1
@@ -70,9 +81,14 @@ class Tamagotchi
   define_method(:clean) do
     @poop -= 2
   end
+  define_method(:kill) do
+    @love -= 10
+  end
 
   define_method(:save) do
     @@all_tamagotchis.push(self)
+    @@live_tamagotchis.push(self)
+
   end
   define_singleton_method(:clear) do
     @@all_tamagotchis = []

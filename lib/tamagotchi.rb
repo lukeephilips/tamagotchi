@@ -12,13 +12,15 @@ class Tamagotchi
     @poop = 0
     @start_time = Time.new()
     @id = @@all_tamagotchis.length().+(1)
+    @image = image(species)
   end
 
   define_method(:id) do
-    puts "hello world"
     @id
   end
-
+  define_method(:image) do
+    @image
+  end
   define_singleton_method(:all) do
     @@all_tamagotchis
   end
@@ -53,22 +55,19 @@ class Tamagotchi
   define_method(:set_food) do |level|
     @food = level
   end
+
   define_method(:time_passes) do
     right_now = Time.new()
     difference = right_now.min - @start_time.min
   end
   define_method(:tamagotchi_changes) do |time|
-    # if is_alive
-      @food -= time
-      @rest -= time
-      @love -= time * 0.5
-      @poop += time * 2
-    # end
+    @food -= time
+    @rest -= time
+    @love -= time * 0.5
+    @poop += time * 2
+    @start_time = Time.new()
   end
-  define_method(:dies) do
-    @@dead_tamagotchis.push(self)
-    # @@live_tamagotchis - self
-  end
+
   define_method(:feed) do
     @food += 1
   end
@@ -90,9 +89,14 @@ class Tamagotchi
     @@live_tamagotchis.push(self)
 
   end
+  define_method(:dies) do
+    @@live_tamagotchis.delete(self)
+    @@dead_tamagotchis.push(self)
+  end
   define_singleton_method(:clear) do
     @@all_tamagotchis = []
   end
+
   define_singleton_method(:find) do |identification|
     found_tomagotchi = nil
     @@all_tamagotchis.each() do |pet|
@@ -101,5 +105,9 @@ class Tamagotchi
       end
     end
     found_tomagotchi
+  end
+  define_method(:image) do |animal|
+    images = {'Fluffy Bunny' => '../img/bunny.gif', 'Scary Tiger' => '../img/tiger.gif', 'Awkward Turtle' => '../img/turtle.gif', 'Waffle' => '../img/waffle.jpeg'}
+    images[animal]
   end
 end

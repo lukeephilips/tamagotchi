@@ -1,12 +1,19 @@
   <h1><%= @tamagotchi.name() %></h1>
-    <h3>Species: <%= @tamagotchi.species() %></h3>
-    <h4>Food: <%= @tamagotchi.food %></h4>
-    <h4>Love: <%= @tamagotchi.love %></h4>
-    <h4>Rest: <%= @tamagotchi.rest %></h4>
-    <h4>Poops: <%= @tamagotchi.poop %></h4>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Species: <%= @tamagotchi.species() %></h3>
+      <h4>Food: <%= @tamagotchi.food %></h4>
+      <h4>Love: <%= @tamagotchi.love %></h4>
+      <h4>Rest: <%= @tamagotchi.rest %></h4>
+      <h4>Poops: <%= @tamagotchi.poop %></h4>
+    </div>
+    <div class="col-sm-6">
+      <img src='<%= @pic %>' alt= "<%= @pic %>" class="img-circle animal-pic">
+    </div>
+  </div>
     <form method="post">
       <div class="form-group">
-        <label for="interactions">Interact with your pet</label>
+        <label for="interactions">Your tamagotchi is waiting</label>
         <select class="form-control" name="interactions">
           <option value="feed">Feed</option>
           <option value="pet">Pet</option>
@@ -17,4 +24,7 @@
       </div>
       <button type="submit" class="btn">Go</button>
     </form>
-  <a href="/">Home</a>
+    <div class="breadcrumb">
+      <p><a href="/tamagotchis">Visit Tamagotchi Garden</a></p>
+      <p><a href="/tamagotchi/new">Add New Tamagotchi</a></p>
+    </div>

@@ -10,9 +10,6 @@ end
 get('/tamagotchis') do
   @all_tamagotchis = Tamagotchi.all()
   @live_tamagotchis = Tamagotchi.live()
-  # @dead_tamagotchis = Tamagotchi.dead()
-
-
   erb(:tamagotchis)
 end
 
@@ -30,30 +27,30 @@ end
 
 get('/tamagotchis/:id') do
   @tamagotchi = Tamagotchi.find(params.fetch('id'))
-  erb(:tamagotchi)
+  @pic = @tamagotchi.image(@tamagotchi.species)
+  @tamagotchi.tamagotchi_changes(@tamagotchi.time_passes())
+  if @tamagotchi.is_alive
+    erb(:tamagotchi)
+  else
+    @tamagotchi.dies()
+    @dead_tamagotchis = Tamagotchi.dead()
+    erb(:graveyard)
+  end
 end
 
 post('/tamagotchis/:id') do
   @tamagotchi = Tamagotchi.find(params.fetch('id'))
+  @pic = @tamagotchi.image(@tamagotchi.species)
+  @tamagotchi.tamagotchi_changes(@tamagotchi.time_passes())
   interaction = params.fetch('interactions')
+  @tamagotchi.send(interaction)
+
   if @tamagotchi.is_alive
- @tamagotchi.tamagotchi_changes(@tamagotchi.time_passes())
-    if interaction == 'feed'
-      @tamagotchi.feed()
-    elsif interaction == 'pet'
-      @tamagotchi.pet()
-    elsif interaction == 'nap'
-      @tamagotchi.nap()
-    elsif interaction == 'clean'
-      @tamagotchi.clean()
-    elsif interaction == 'kill'
-      @tamagotchi.kill()
-    end
     erb(:tamagotchi)
   else
     @tamagotchi.dies()
     # @dead_tamagotchis = Tamagotchi.dead()
-    # @dead_tamagotchis.push(@tamagotchi)
+    @dead_tamagotchis = Tamagotchi.dead()
     erb(:graveyard)
   end
 end
@@ -61,7 +58,4 @@ end
 get('/graveyard') do
   @dead_tamagotchis = Tamagotchi.dead()
   erb(:graveyard)
-end
-get('/interaction') do
-  erb(:tamagotchi)
 end

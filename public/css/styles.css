@@ -1,0 +1,14 @@
+body {
+  background-color: lightgreen;
+}
+.container {
+  margin-top: 2%;
+}
+.jumbotron {
+  background-image: url('http://siteforeverything.com/wp-content/uploads/2015/05/PureLand1.jpg');
+  color: white;
+  text-align: center;
+}
+.animal-pic {
+  height: 15em;
+}

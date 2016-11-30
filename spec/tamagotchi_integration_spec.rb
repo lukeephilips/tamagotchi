@@ -8,11 +8,12 @@ describe('the home path', {:type => :feature}) do
     Tamagotchi.clear
   end
   it('allows the user to create a new tamagotchi') do
-    visit('/tamagotchi_form')
+    visit('/')
+    click_link('Add New Tamagotchi')
     fill_in('pet_name', :with => 'Marvin')
-    select('Martian', :from => 'species')
+    select('Fluffy Bunny', :from => 'species')
     click_button('Create')
-    expect(page).to have_content('You have created Marvin the Martian')
+    expect(page).to have_content('You have created Marvin the Fluffy Bunny')
   end
 end
 
@@ -21,21 +22,22 @@ describe('the interacting with pet path', {:type => :feature}) do
     Tamagotchi.clear
   end
   it('allows the user to interact with their pet and displays changes') do
-    visit('/tamagotchi_form')
-    fill_in('pet_name', :with => 'Marvin')
-    select('Martian', :from => 'species')
-    click_button('Create')
-
     visit('/')
+    click_link('Add New Tamagotchi')
+    fill_in('pet_name', :with => 'Zortan')
+    select('Fluffy Bunny', :from => 'species')
+    click_button('Create')
+    click_link('Visit Tamagotchi Garden')
+    click_link('Zortan the Fluffy Bunny')
     select('Feed', :from => 'interactions')
     click_button('Go')
-    expect(page).to have_content('You did something to your pet. Nice work!')
+    expect(page).to have_content('Species: Fluffy Bunny')
   end
 
   # it('allows the user to interact with their pet and displays changes') do
   #   visit('/')
   #   fill_in('pet_name', :with => 'Marvin')
-  #   select('Martian', :from => 'species')
+  #   select('Fluffy Bunny', :from => 'species')
   #   click_button('Create')
   #
   #   visit('/')

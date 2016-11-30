@@ -8,21 +8,21 @@
       <h4>Poops: <%= @tamagotchi.poop %></h4>
     </div>
     <div class="col-sm-6">
-      <img src='<%= @pic %>' alt= "<%= @pic %>" class="img-circle animal-pic">
+      <img src='<%= @pic %>' alt= "<%= @pic %>" class="img-rounded animal-pic">
     </div>
   </div>
     <form method="post">
       <div class="form-group">
-        <label for="interactions">Your tamagotchi is waiting</label>
+        <label for="interactions">Your tamagotchi is waiting for attention...</label>
         <select class="form-control" name="interactions">
-          <option value="feed">Feed</option>
-          <option value="pet">Pet</option>
-          <option value="nap">Nap</option>
-          <option value="clean">Clean</option>
-          <option value="kill">Kill</option>
+          <option value="feed">Feed him</option>
+          <option value="pet">Pet him</option>
+          <option value="nap">Give him a nap</option>
+          <option value="clean">Clean his cage</option>
+          <option value="kill">Kill it</option>
         </select>
       </div>
-      <button type="submit" class="btn">Go</button>
+      <button type="submit" class="btn btn-success">Go</button>
     </form>
     <div class="breadcrumb">
       <p><a href="/tamagotchis">Visit Tamagotchi Garden</a></p>

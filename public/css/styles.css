@@ -1,5 +1,9 @@
 body {
   background-color: lightgreen;
+  font-size: 1.5em;
+}
+li a{
+  color:magenta;
 }
 .container {
   margin-top: 2%;
@@ -11,4 +15,8 @@ body {
 }
 .animal-pic {
   height: 15em;
+}
+
+.dead {
+  height: 20em;
 }

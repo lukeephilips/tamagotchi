@@ -9,6 +9,11 @@ end
 
 get('/tamagotchis') do
   @all_tamagotchis = Tamagotchi.all()
+  @all_tamagotchis.each do |pet|
+    if !pet.is_alive
+      pet.dies
+    end
+  end
   @live_tamagotchis = Tamagotchi.live()
   erb(:tamagotchis)
 end
@@ -44,12 +49,12 @@ post('/tamagotchis/:id') do
   @tamagotchi.tamagotchi_changes(@tamagotchi.time_passes())
   interaction = params.fetch('interactions')
   @tamagotchi.send(interaction)
-
   if @tamagotchi.is_alive
+
     erb(:tamagotchi)
   else
     @tamagotchi.dies()
-    # @dead_tamagotchis = Tamagotchi.dead()
+    @dead_tamagotchis = Tamagotchi.dead()
     @dead_tamagotchis = Tamagotchi.dead()
     erb(:graveyard)
   end

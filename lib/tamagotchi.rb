@@ -6,9 +6,9 @@ class Tamagotchi
   define_method(:initialize) do |name, species|
     @name = name
     @species = species
-    @food = 10
-    @rest = 10
-    @love = 10
+    @food = 20
+    @rest = 20
+    @love = 20
     @poop = 0
     @start_time = Time.new()
     @id = @@all_tamagotchis.length().+(1)
@@ -50,7 +50,7 @@ class Tamagotchi
   end
 
   define_method(:is_alive) do
-    @food > 0 and @rest > 0 and @love > 0 and @poop < 10
+    @food > 0 and @rest > 0 and @love > 0 and @poop < 20
   end
   define_method(:set_food) do |level|
     @food = level
@@ -58,30 +58,38 @@ class Tamagotchi
 
   define_method(:time_passes) do
     right_now = Time.new()
-    difference = right_now.min - @start_time.min
+    difference = right_now - @start_time
   end
   define_method(:tamagotchi_changes) do |time|
-    @food -= time
-    @rest -= time
-    @love -= time * 0.5
-    @poop += time * 2
+    @food -= (time/1.2).to_i
+    @rest -= (time/1.5).to_i
+    @love -= (time/2).to_i
+    @poop += (time).to_i
     @start_time = Time.new()
   end
 
   define_method(:feed) do
-    @food += 1
+    if @food < 25
+      @food += 1
+    end
   end
   define_method(:nap) do
-    @rest += 1
+    if @rest < 125
+      @rest += 1
+    end
   end
   define_method(:pet) do
-    @love += 1
+    if @love < 25
+      @love += 1
+    end
   end
   define_method(:clean) do
-    @poop -= 2
+    if @poop > 0
+      @poop -=5
+    end
   end
   define_method(:kill) do
-    @love -= 10
+    @love -= 25
   end
 
   define_method(:save) do

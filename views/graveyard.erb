@@ -1,8 +1,11 @@
-<h1> he ded</h1>
-
-<h3>He lies with his brethren: </h3>
+<h1> he ded.</h1>
+<img src="../img/dead.jpg" alt="ded" class="dead img-rounded"/>
+<h3>Your Tamagotchi Graveyard: </h3>
 <ul>
   <% @dead_tamagotchis.each() do |tamagotchi| %>
     <li><%= tamagotchi.name() %> the <%= tamagotchi.species() %></li>
   <% end %>
 </ul>
+
+<h3><a href="/tamagotchi/new">Add Another Tamagotchi</a></h3>
+<h3><a href="/tamagotchis">Visit Tamagotchi Garden</a></h3>
